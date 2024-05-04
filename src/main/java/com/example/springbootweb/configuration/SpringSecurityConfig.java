@@ -35,7 +35,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 @RequiredArgsConstructor
 //@Profile("secure")
-public class SpringSecurityConfig {
+public class SpringSecurityConfig { //extends websecurityconfigureradapter depricated from spring security 6.0
 
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
