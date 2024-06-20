@@ -68,7 +68,7 @@ public class StudentController {
     //@Secured("ROLE_ADMIN")//ony ADMIN can access
     //@PreAuthorize("hasRole('ROLE_ADMIN')")//before entering method it checks authorize or not
     //@PostAuthorize("hasRole('ROLE_ADMIN')")//first execute method then check authorization if not AccessDeniedException
-    //@PreAuthorize("hasRole('ADMIN')")
+
     @PostMapping("/save")
     public ResponseEntity<Object> saveStudent(@RequestBody Student student) {
         try {
