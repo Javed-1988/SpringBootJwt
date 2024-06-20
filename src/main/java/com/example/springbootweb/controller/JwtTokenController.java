@@ -27,12 +27,17 @@ public class JwtTokenController {
     @PostMapping("/api/v1/login")
     public JwtResponse AuthenticateAndGetToken(@RequestBody JwtRequest jwtRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
+
+        System.out.println("hi");
+
         if(authentication.isAuthenticated()){
             String token=jwtUtility.GenerateToken(jwtRequest.getUsername());
             return new JwtResponse(token);
 
 //            return JwtResponse.builder()
 //                    .token(jwtUtility.GenerateToken(jwtRequest.getUsername()));
+
+
         } else {
             throw new UsernameNotFoundException("invalid user request..!!");
         }
