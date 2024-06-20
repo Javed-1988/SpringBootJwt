@@ -29,6 +29,7 @@ public class JwtTokenController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
 
         System.out.println("hi");
+        System.out.println("hello");
 
         if(authentication.isAuthenticated()){
             String token=jwtUtility.GenerateToken(jwtRequest.getUsername());
