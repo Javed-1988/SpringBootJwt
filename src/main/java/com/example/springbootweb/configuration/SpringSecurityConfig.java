@@ -48,9 +48,9 @@ public class SpringSecurityConfig { //extends websecurityconfigureradapter depri
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          http.csrf(csrf->csrf.disable());
-         http.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/login").permitAll().
-                 requestMatchers("/v1/boot/**").authenticated());
-         http.authorizeHttpRequests(auth3->auth3.requestMatchers("/sendmessage").authenticated().requestMatchers("/saveStudent").authenticated());
+         http.authorizeHttpRequests(auth->auth.requestMatchers("/api/v1/login").permitAll());
+         http.authorizeHttpRequests(auth4->auth4.requestMatchers("/v1/boot/**").authenticated());
+         http.authorizeHttpRequests(auth3->auth3.requestMatchers("/sendmessage").authenticated());
          http.authorizeHttpRequests(auth1->auth1.requestMatchers("/actuator/**").permitAll());
          http.authorizeHttpRequests(auth2->auth2.requestMatchers("/swagger-ui/index.html").permitAll());
          http.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

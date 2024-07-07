@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.annotation.PostConstruct;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,14 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RequestMapping(value = "/v1/boot")
@@ -70,10 +74,17 @@ public class StudentController {
     //@PostAuthorize("hasRole('ROLE_ADMIN')")//first execute method then check authorization if not AccessDeniedException
 
     @PostMapping("/save")
-    public ResponseEntity<Object> saveStudent(@RequestBody Student student) {
+    public ResponseEntity<Object> saveStudent(@Valid @RequestBody Student student, BindingResult result) {
         try {
-            Student student1 = studentservice.save(student);
-            return ResponseEntity.status(HttpStatus.CREATED).body("data saved successfully:" + student1);
+            if (result.hasErrors()) {
+                Map<String, String> errors = new HashMap<>();
+                result.getFieldErrors().forEach(error -> errors.put(error.getField(), error.getDefaultMessage()));
+                return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+            }
+            else {
+                Student student1 = studentservice.save(student);
+                return ResponseEntity.status(HttpStatus.CREATED).body("data saved successfully:" + student1);
+            }
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("data not saved: " + e.getMessage());
         }
@@ -113,15 +124,16 @@ public class StudentController {
         return list;
 
     }
-    @GetMapping("/getstudent/{id}")
+    @GetMapping("/getstudentbyid/{id}")
     public ResponseEntity<Object> getStudentById(@PathVariable int id) {
         log.info("hello");
 
         try {
             Student st = studentservice.getStudentById(id);
-            log.info(st.toString());
+            System.out.println("--------------------------"+st.toString());
+            //log.info(st.toString());
 
-            return ResponseEntity.ok(st);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(st);
         }
         catch(IdNotFoundException ex)
         {

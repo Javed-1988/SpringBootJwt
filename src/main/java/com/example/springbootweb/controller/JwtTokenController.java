@@ -28,8 +28,10 @@ public class JwtTokenController {
     public JwtResponse AuthenticateAndGetToken(@RequestBody JwtRequest jwtRequest){
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
 
-        System.out.println("hi");
-        System.out.println("hello");
+//        System.out.println("hi");
+//        System.out.println("hello");
+//        System.out.println("welcome");
+//        System.out.println("welcome2");
 
         if(authentication.isAuthenticated()){
             String token=jwtUtility.GenerateToken(jwtRequest.getUsername());

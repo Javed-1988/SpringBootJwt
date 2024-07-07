@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
@@ -19,6 +20,7 @@ public class Address {
     private String city;
     private String location;
     @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "student_id")
     //@JsonBackReference
     private Student student;
 
