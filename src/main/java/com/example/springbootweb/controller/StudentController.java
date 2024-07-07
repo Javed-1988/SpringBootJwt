@@ -130,7 +130,7 @@ public class StudentController {
 
         try {
             Student st = studentservice.getStudentById(id);
-            System.out.println("--------------------------"+st.toString());
+           // System.out.println("--------------------------"+st.toString());
             //log.info(st.toString());
 
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(st);

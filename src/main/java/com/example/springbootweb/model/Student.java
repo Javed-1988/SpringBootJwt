@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class Student {
     private String name;
     @Email(message = "email not formatted correct")
     private String email;
-    @NotNull
+    @Positive(message = "age is mandatory")
     private int age;
     private String contact_no;
     //@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

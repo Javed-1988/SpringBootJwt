@@ -4,6 +4,7 @@ import com.example.springbootweb.exception.IdNotFoundException;
 import com.example.springbootweb.model.Address;
 import com.example.springbootweb.model.Student;
 import com.example.springbootweb.repository.StudentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class  StudentServiceImpl implements Studentservice {
 
     private final StudentRepository repository;
@@ -24,13 +26,8 @@ public class  StudentServiceImpl implements Studentservice {
     public Student save(Student student)
     {
 
-        if(student.getAddress()!=null)
-        {
-            return repository.save(student);
-        }
-        else {
-            throw new RuntimeException("address can not be null");
-        }
+        return repository.save(student);
+
 
     }
     @Override
