@@ -3,6 +3,7 @@ package com.example.springbootweb.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -15,14 +16,12 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 @Slf4j
+@RequiredArgsConstructor
 public class RestApiCalling {
 
     private static final String URL="https://restcountries.com/v3.1/independent?status=true";
     private final RestTemplate restTemplate;
-    RestApiCalling(RestTemplate restTemplate)
-    {
-        this.restTemplate=restTemplate;
-    }
+
 
     @GetMapping("/getApiData")
     public String get()

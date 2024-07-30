@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -47,6 +48,8 @@ public class StudentController {
     String message;
     private final Studentservice studentservice;
     private final JwtUtility jwtUtility;
+//    @Autowired
+//    Environment env;
 //    @Bean
 //    public DBConnection getDBConnection() {// its is getting data from properties file which is defined in @PropertySource
 //        System.out.println("Getting DBConnection Bean for App: "+env.getProperty("APP_NAME"));
