@@ -4,6 +4,7 @@ import com.example.springbootweb.exception.IdNotFoundException;
 import com.example.springbootweb.model.JwtRequest;
 import com.example.springbootweb.model.JwtResponse;
 import com.example.springbootweb.model.Student;
+import com.example.springbootweb.service.BeanExample;
 import com.example.springbootweb.service.Studentservice;
 import com.example.springbootweb.utility.JwtUtility;
 import io.swagger.v3.oas.annotations.Operation;
@@ -48,6 +49,7 @@ public class StudentController {
     String message;
     private final Studentservice studentservice;
     private final JwtUtility jwtUtility;
+
 //    @Autowired
 //    Environment env;
 //    @Bean
@@ -66,6 +68,7 @@ public class StudentController {
     //
     //Testability: Constructor injection makes it easier to write unit tests for classes because dependencies are passed explicitly.
     // This makes it straightforward to mock or stub dependencies during testing, leading to more isolated and reliable tests.
+
 
     @GetMapping("/")
     public String get() {
