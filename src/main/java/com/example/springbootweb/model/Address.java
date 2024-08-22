@@ -3,11 +3,7 @@ package com.example.springbootweb.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
+import lombok.*;
 @Entity
 @Data
 @AllArgsConstructor
@@ -20,8 +16,7 @@ public class Address {
     private String city;
     private String location;
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "student_id")
-    //@JsonBackReference
+    @JoinColumn(name = "student_id")
     private Student student;
 
 }

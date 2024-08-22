@@ -10,10 +10,11 @@ import lombok.*;
 
 import java.util.List;
 
+
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Table(name="student")
 public class Student {
     @Id
