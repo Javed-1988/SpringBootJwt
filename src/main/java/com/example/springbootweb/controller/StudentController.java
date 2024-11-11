@@ -114,6 +114,7 @@ public class StudentController {
 //        list.stream().sorted(Comparator.comparingInt(Student::getId).reversed()).forEach(System.out::println);
 
         log.info("port-----Number:"+port);
+
         return list;
 
     }
@@ -123,7 +124,7 @@ public class StudentController {
 
         try {
             Student st = studentservice.getStudentById(id);
-            System.out.println("--------------------------"+st.toString());
+            log.info("--------------------------"+st.toString());
             //log.info(st.toString());
 
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(st);
@@ -163,7 +164,7 @@ public class StudentController {
     @DeleteMapping("/delstudent/{id}")
     public ResponseEntity<Object> delStudentById(@PathVariable int id) {
         try {
-            String str=studentservice.delStudentById(id);
+            studentservice.delStudentById(id);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body("Student Deleted successfully by id: " + id);
         } catch (IdNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
