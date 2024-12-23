@@ -3,6 +3,7 @@ package com.example.springboot.test;
 import com.example.springbootweb.model.Student;
 import com.example.springbootweb.repository.StudentRepository;
 import com.example.springbootweb.service.StudentServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = JunitTest.class)
 @RunWith(SpringRunner.class)
+@Slf4j
 public class JunitTest {
 
     @Mock
@@ -32,6 +34,7 @@ public class JunitTest {
 
     @Before
     public void setUp() {
+        log.info("do nothing");
 
     }
 
